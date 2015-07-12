@@ -24,4 +24,8 @@ h1 {
   height: auto;
   min-height: 100px;
   width: 100%;
+  z-index: 3;
+}
+.dm-banner-canvas .canvas-0 {
+  z-index: 2;
 }
