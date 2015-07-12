@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="blur">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Stack Blur</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="liujing.break@gmail.com">
+		<link rel="stylesheet" type="text/css" href="/vendor/normalize.css">
+		<link rel="stylesheet" type="text/css" href="/vendor/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="dist/all.css">
+		
+		<script type="text/javascript" src="../vendor/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/vendor/modernizr.custom.87166.js"></script>
+		<script type="text/javascript" src="/vendor/angularjs/angular.min.js"></script>
+		<script type="text/javascript" src="/vendor/angularjs/angular-route.min.js"></script>
+		<script type="text/javascript" src="/vendor/angularjs/angular-animate.min.js"></script>
+		<script type="text/javascript" src="/vendor/lodash.min.js"></script>
+		<script type="text/javascript" src="/vendor/TweenMax.min.js"></script>
+		<script type="text/javascript" src="/vendor/greensock/ScrollToPlugin.min.js"></script>
+		<script type="text/javascript" src="StackBlur.js"></script>
+		
+	</head>
+	<body ng-controller="main">
+		<div class="background-test"></div>
+		hellow blur
+		<canvas id="canvas" >
+		</canvas>
+		<img ng-src="{{imageSrc}}" ng-show="showImage"/>
+		
+			<script>
+			function blurImage( image, canvasID, radius, blurAlphaChannel )
+			{
+						
+				var img = image;
+				var w = img.naturalWidth;
+				var h = img.naturalHeight;
+				   
+				var canvas = document.getElementById( canvasID );
+      
+				//canvas.style.width  = w + "px";
+				//canvas.style.height = h + "px";
+				//canvas.width = w;
+				//canvas.height = h;
+				
+				var context = canvas.getContext("2d");
+				context.clearRect( 0, 0, w, h );
+				context.drawImage( img, 0, 0 );
+			
+				if ( isNaN(radius) || radius < 1 ) return;
+				
+				if ( blurAlphaChannel )
+					stackBlurCanvasRGBA( canvasID, 0, 0, w, h, radius );
+				else 
+					stackBlurCanvasRGB( canvasID, 0, 0, w, h, radius );
+			}
+				
+			
+			angular.module('blur',[]).controller('main', ['$scope', function($scope){
+			$scope.showImage = false;
+			$(function(){
+				$('<img>').prop('src', 'images/pop01.jpg').load(function(){
+					$scope.showImage = true;
+					$scope.imageSrc = 'images/pop01.jpg';
+					$scope.$apply();
+					
+					var img = this;
+					blurImage(this, 'canvas', 0, false);
+					
+					$('.background-test').css({'backgroundImage': 'url(images/pop01.jpg)'}); 
+				});
+				
+				
+			});
+		}]);
+		</script>
+	</body>
+</html>

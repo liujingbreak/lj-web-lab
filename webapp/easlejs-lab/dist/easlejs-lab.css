@@ -1,0 +1,27 @@
+html,
+body {
+  height: 100%;
+}
+h1 {
+  color: green;
+}
+.dm-banner-canvas {
+  height: 90%;
+  position: relative;
+}
+.dm-banner-canvas .banner-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.dm-banner-canvas canvas {
+  display: block;
+}
+.dm-banner-canvas .banner-layer,
+.dm-banner-canvas .layer-canvas {
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  min-height: 100px;
+  width: 100%;
+}
