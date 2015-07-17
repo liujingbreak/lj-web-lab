@@ -17,6 +17,9 @@ h1 {
 .dm-banner-canvas canvas {
   display: block;
 }
+.dm-banner-canvas .layer-canvas {
+  background-color: red;
+}
 .dm-banner-canvas .banner-layer,
 .dm-banner-canvas .layer-canvas {
   position: absolute;
@@ -24,8 +27,32 @@ h1 {
   height: auto;
   min-height: 100px;
   width: 100%;
-  z-index: 3;
+  z-index: 10;
 }
 .dm-banner-canvas .canvas-0 {
   z-index: 2;
+}
+.dm-banner-canvas .banner-canvas {
+  position: absolute;
+}
+.dm-banner-canvas .banner-buttons {
+  text-align: center;
+  width: 100%;
+}
+.dm-banner-canvas .banner-buttons i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #f3f3f3;
+  border-radius: 6px 6px 6px 6px;
+  margin: 5px 10px;
+  vertical-align: middle;
+  transition: all 0.2s ease-out;
+}
+.dm-banner-canvas .banner-buttons i.selected {
+  background-color: #ffffff;
+  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-sizing: content-box;
+  border-radius: 9px 9px 9px 9px;
 }
